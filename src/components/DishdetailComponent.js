@@ -9,6 +9,14 @@ class DishDetail extends Component{
         }
     }
 
+    componentDidMount(){
+        console.log('Dishdetail component componentDidMount invoked')
+    }
+
+    componentDidUpdate(){
+        console.log('Dishdetail component componentDidUpdate invoked')
+    }
+
     renderDish(dish){
         if(dish != null){
             return(
@@ -53,6 +61,7 @@ class DishDetail extends Component{
     }
 
     render(){
+        console.log('Dishdetail component render is invoked')
         return(
             <div className="container">
                 <div className="row">
