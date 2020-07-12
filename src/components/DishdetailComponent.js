@@ -30,18 +30,20 @@ class DishDetail extends Component{
     renderComments(dish){
         if(dish != null){
             return(
-                <ul className="list-unstyled">
-                    {dish.comments.map((com)=>{
-                        return(
-                            <li key={com.id}>
-                                <p>{com.comment}</p>
-                                <p>--{com.author}, {com.date}</p>
-                            </li>
-                        )
-                    })   
-                    }
-                    
-                </ul>
+                
+                    <ul className="list-unstyled">
+                        {dish.comments.map((com)=>{
+                            return(
+                                <li key={com.id}>
+                                    <p>{com.comment}</p>
+                                    <p>--{com.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month:'short', day: '2-digit'}).format(new Date(Date.parse(com.date)))}</p>
+                                </li>
+                            )
+                        })   
+                        }
+                    </ul>
+                   
+                
             )
         }else{
             return(
@@ -52,14 +54,16 @@ class DishDetail extends Component{
 
     render(){
         return(
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.selectedDish)}
+            <div className="container">
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderDish(this.props.dish)}
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        <h4>Comments</h4>   
+                        {this.renderComments(this.props.dish)}   
+                    </div> 
                 </div>
-                <div className="col-12 col-md-5 m-1">
-                    <h4>Comments</h4>   
-                    {this.renderComments(this.props.selectedDish)}   
-                </div> 
             </div>
         )
     }
